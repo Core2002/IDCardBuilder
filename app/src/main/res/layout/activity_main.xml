@@ -13,9 +13,10 @@
             android:layout_height="63dp"
             android:id="@+id/kaishi"
             app:layout_constraintTop_toBottomOf="@+id/geshu"
-            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="100dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp"
+            />
 
     <EditText
             android:layout_width="wrap_content"
@@ -25,10 +26,11 @@
             android:inputType="date"
             android:ems="10"
             android:id="@+id/geshu"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="44dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="100dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            android:layout_marginTop="16dp"
+            android:minHeight="48dp"/>
 
     <EditText
             android:layout_width="322dp"
@@ -43,13 +45,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintVertical_bias="0.062"
             android:gravity="top"
-            app:layout_constraintHorizontal_bias="0.485"/>
+            />
 
     <TextView
             android:text="注意⚠️：所有号码均为随机掷出，若有雷同纯属巧合。"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView"/>
+            android:id="@+id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="0dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
+
+    <TextView
+            android:text="github.com/Core2002/IDCardBuilder"
+            android:layout_width="267dp"
+            android:layout_height="163dp"
+            android:id="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jieguo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.131"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
