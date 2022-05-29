@@ -34,22 +34,12 @@ object MyIDCardUtil {
         val sfz = diQuNum.first() + randomDate()
         val list = mutableListOf<String>()
 
-        if (list.size < shengChengShuLiang)
-            for (i in 1111 until 9999) {
-                if (list.size < shengChengShuLiang) {
-                    var t = sfz + i
-                    if (IdcardUtil.isValidCard18(t)){
-                        if (IdcardUtil.getAgeByIdCard(t)<18){
-                            t+=" [未成年]"
-                        }
-                        list.add(t)
-                    }
-                } else {
-                    break
-                }
-            }
+        for (i in 0 until 9999) {
+            val tmp = sfz + if (i < 1000) String.format("%04d", i) else i
+            if (list.size < shengChengShuLiang) if (IdcardUtil.isValidCard18(tmp)) list.add(tmp) else continue else break
+        }
+
         list.shuffle()
-        Log.i("qwq", "awa $list")
         return list
     }
 
