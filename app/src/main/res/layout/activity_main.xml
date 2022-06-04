@@ -69,5 +69,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.131"/>
 
+    <Button
+            android:text="过防沉迷"
+            android:layout_width="77dp"
+            android:layout_height="57dp"
+            android:id="@+id/fcm"
+            app:layout_constraintStart_toEndOf="@+id/kaishi"
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/kaishi"
+            app:layout_constraintTop_toTopOf="@+id/kaishi"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
