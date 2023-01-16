@@ -1,6 +1,5 @@
 package `fun`.fifu.neko.idcardbuilder
 
-import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.Context
 import android.content.Intent
@@ -16,42 +15,12 @@ class MainActivity : AppCompatActivity() {
         lateinit var awa: MainActivity
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         awa = this
         findViewById<Button>(R.id.kaishi).setOnClickListener {
-            findViewById<TextView>(R.id.textView2)
-            try {
-                val geshu = findViewById<EditText>(R.id.geshu)
-                val resListView = findViewById<ListView>(R.id.resListView)
-                fun readGeShu() = geshu.text.toString().toInt()
-                MyIDCardUtil.shengChengShuLiang = readGeShu()
-                val currentTimeMillis = System.currentTimeMillis()
-                val pwp = MyIDCardUtil.makeAIdcard()
-                val text =
-                    "耗时 ${System.currentTimeMillis() - currentTimeMillis}毫秒 终于完毕惹qwq\n一共生成了 ${pwp.size}个 来自\n${
-                        MyIDCardUtil.nb[pwp.first().substring(0, 6)]
-                    }\n的 ${if (IdcardUtil.getAgeByIdCard(pwp.first()) < 18) "未成年" else "成年"} 小伙伴捏~"
-                Toast.makeText(it.context, text, Toast.LENGTH_SHORT).show()
-                MyIDCardUtil.nb[pwp.first().substring(0, 6)]?.let { it1 -> pwp.add(0, it1) }
-                val adapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
-                    this,
-                    android.R.layout.simple_list_item_1,
-                    pwp.toList()
-                )
-                resListView.adapter = adapter
-                resListView.onItemLongClickListener =
-                    AdapterView.OnItemLongClickListener { adapterView, view, i, l ->
-                        setClipboard(it.context, pwp[i])
-                        Toast.makeText(it.context, "已复制：${pwp[i]}", Toast.LENGTH_SHORT).show()
-                        true
-                    }
-
-            } catch (e: java.lang.Exception) {
-            }
-
+            genIDCards(it.context)
         }
 
         findViewById<Button>(R.id.fcm).setOnClickListener {
@@ -64,6 +33,40 @@ class MainActivity : AppCompatActivity() {
             } catch (e: java.lang.Exception) {
             }
 
+        }
+
+        genIDCards(this.baseContext)
+    }
+
+    private fun genIDCards(context: Context){
+        findViewById<TextView>(R.id.textView2)
+        try {
+            val geshu = findViewById<EditText>(R.id.geshu)
+            val resListView = findViewById<ListView>(R.id.resListView)
+            fun readGeShu() = geshu.text.toString().toInt()
+            MyIDCardUtil.shengChengShuLiang = readGeShu()
+            val currentTimeMillis = System.currentTimeMillis()
+            val pwp = MyIDCardUtil.makeAIdcard()
+            val text =
+                "耗时 ${System.currentTimeMillis() - currentTimeMillis}毫秒 终于完毕惹qwq\n一共生成了 ${pwp.size}个 来自\n${
+                    MyIDCardUtil.nb[pwp.first().substring(0, 6)]
+                }\n的 ${if (IdcardUtil.getAgeByIdCard(pwp.first()) < 18) "未成年" else "成年"} 小伙伴捏~"
+            Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+            MyIDCardUtil.nb[pwp.first().substring(0, 6)]?.let { it1 -> pwp.add(0, it1) }
+            val adapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
+                this,
+                android.R.layout.simple_list_item_1,
+                pwp.toList()
+            )
+            resListView.adapter = adapter
+            resListView.onItemLongClickListener =
+                AdapterView.OnItemLongClickListener { adapterView, view, i, l ->
+                    setClipboard(context, pwp[i])
+                    Toast.makeText(context, "已复制：${pwp[i]}", Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+        } catch (e: java.lang.Exception) {
         }
     }
 

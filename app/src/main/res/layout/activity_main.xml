@@ -9,9 +9,9 @@
     <Button
         android:id="@+id/kaishi"
         android:layout_width="210dp"
-        android:layout_height="63dp"
+        android:layout_height="60dp"
         android:layout_marginTop="8dp"
-        android:text="一 键 生 成"
+        android:text="换"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +28,10 @@
         android:text="60"
         app:layout_constraintBottom_toBottomOf="@+id/kaishi"
         app:layout_constraintEnd_toStartOf="@+id/kaishi"
+        app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/kaishi" />
+        app:layout_constraintTop_toTopOf="@+id/kaishi"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView"
@@ -53,15 +55,16 @@
 
     <Button
         android:id="@+id/fcm"
-        android:layout_width="77dp"
-        android:layout_height="57dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
         android:text="过防沉迷"
         app:layout_constraintBottom_toBottomOf="@+id/kaishi"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
         app:layout_constraintStart_toEndOf="@+id/kaishi"
         app:layout_constraintTop_toTopOf="@+id/kaishi"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ListView
         android:id="@+id/resListView"
