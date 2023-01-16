@@ -10,9 +10,9 @@ import java.util.*
 
 
 object MyIDCardUtil {
-    val iu = Class.forName("cn.hutool.core.util.IdcardUtil")
+    val utilClass = Class.forName("cn.hutool.core.util.IdcardUtil")
     fun getAccField(field: String): Field {
-        return iu.getDeclaredField(field).let {
+        return utilClass.getDeclaredField(field).let {
             it.isAccessible = true
             it
         }
@@ -25,26 +25,27 @@ object MyIDCardUtil {
     val TW_FIRST_CODE = getAccField("TW_FIRST_CODE").get(null) as Map<Character, Int>
     val gson = GsonBuilder().setPrettyPrinting().create()
 
-    var jsonString = String(MainActivity.awa.assets.open("中国行政区划表.json").readBytes())
-    var nb: Map<String, String> = gson.fromJson<Map<String, String>>(jsonString, Map::class.java)
+    var jsonString = String(MainActivity.mainActivity.assets.open("中国行政区划表.json").readBytes())
+    var dataMap: Map<String, String> =
+        gson.fromJson<Map<String, String>>(jsonString, Map::class.java)
 
-    var shengChengShuLiang = 99
-    fun makeAIdcard(): MutableList<String> {
-        val diQuNum = nb.keys.shuffled().take(1)
-        val sfz = diQuNum.first() + randomDate()
-        val list = mutableListOf<String>()
+    var buildNumber = 99
+    fun makeAnIDCard(): MutableList<String> {
+        val randomCityCode = dataMap.keys.shuffled().take(1)
+        val randomCityAndDate = randomCityCode.first() + randomDate()
+        val resList = mutableListOf<String>()
 
         for (i in 0 until 9999) {
-            val tmp = sfz + if (i < 1000) String.format("%04d", i) else i
-            if (list.size < shengChengShuLiang) if (IdcardUtil.isValidCard18(tmp)) list.add(tmp) else continue else break
+            val tmp = randomCityAndDate + if (i < 1000) String.format("%04d", i) else i
+            if (resList.size < buildNumber) if (IdcardUtil.isValidCard18(tmp)) resList.add(tmp) else continue else break
         }
 
-        list.shuffle()
-        return list
+        resList.shuffle()
+        return resList
     }
 
     fun showFields() {
-        iu.declaredFields.forEach {
+        utilClass.declaredFields.forEach {
             it.isAccessible = true
             Log.i("qwq", "$it \t (${it.name})")
         }
@@ -54,20 +55,20 @@ object MyIDCardUtil {
 
     @SuppressLint("SimpleDateFormat")
     val sdf = SimpleDateFormat("yyyy")
-    val currentDate = sdf.format(Date()).toInt()
+    private val currentDate = sdf.format(Date()).toInt()
     private fun randomDate(): String {
         val year: Int = r.nextInt(currentDate - 2016) + 2000
         val month: Int = r.nextInt(12) + 1
-        val Day: Int = r.nextInt(30) + 1
-        return year.toString() + cp(month) + cp(Day)
+        val day: Int = r.nextInt(30) + 1
+        return year.toString() + handleZero(month) + handleZero(day)
     }
 
-    private fun cp(num: Int): String {
-        val Num = num.toString() + ""
-        return if (Num.length == 1) {
-            "0$Num"
+    private fun handleZero(num: Int): String {
+        val number = num.toString() + ""
+        return if (number.length == 1) {
+            "0$number"
         } else {
-            Num
+            number
         }
     }
 }
