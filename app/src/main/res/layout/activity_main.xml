@@ -1,83 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <Button
-            android:text="一 键 生 成"
-            android:layout_width="210dp"
-            android:layout_height="63dp"
-            android:id="@+id/kaishi"
-            app:layout_constraintTop_toBottomOf="@+id/geshu"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp"
-            />
+        android:id="@+id/kaishi"
+        android:layout_width="210dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="8dp"
+        android:text="一 键 生 成"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10"
-            android:gravity="center"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/geshu"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            android:layout_marginTop="16dp"
-            android:minHeight="48dp"/>
-
-    <EditText
-            android:layout_width="322dp"
-            android:layout_height="347dp"
-            android:inputType="textMultiLine"
-            android:text="结果在这里"
-            android:ems="10"
-            android:id="@+id/jieguo"
-            app:layout_constraintTop_toBottomOf="@+id/kaishi"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.062"
-            android:gravity="top"
-            />
+        android:id="@+id/geshu"
+        android:layout_width="63dp"
+        android:layout_height="59dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="date"
+        android:minHeight="48dp"
+        android:text="60"
+        app:layout_constraintBottom_toBottomOf="@+id/kaishi"
+        app:layout_constraintEnd_toStartOf="@+id/kaishi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/kaishi" />
 
     <TextView
-            android:text="注意⚠️：所有号码均为随机掷出，若有雷同纯属巧合。"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="0dp"
-            app:layout_constraintHorizontal_bias="0.0"/>
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="注意⚠️：所有号码均为随机掷出，若有雷同纯属巧合。"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-            android:text="github.com/Core2002/IDCardBuilder"
-            android:layout_width="267dp"
-            android:layout_height="163dp"
-            android:id="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/jieguo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.131"/>
+        android:id="@+id/textView2"
+        android:layout_width="255dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="4dp"
+        android:text="github.com/Core2002/IDCardBuilder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-            android:text="过防沉迷"
-            android:layout_width="77dp"
-            android:layout_height="57dp"
-            android:id="@+id/fcm"
-            app:layout_constraintStart_toEndOf="@+id/kaishi"
-            android:layout_marginStart="4dp"
-            app:layout_constraintBottom_toBottomOf="@+id/kaishi"
-            app:layout_constraintTop_toTopOf="@+id/kaishi"/>
+        android:id="@+id/fcm"
+        android:layout_width="77dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="8dp"
+        android:text="过防沉迷"
+        app:layout_constraintBottom_toBottomOf="@+id/kaishi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/kaishi"
+        app:layout_constraintTop_toTopOf="@+id/kaishi"
+        app:layout_constraintVertical_bias="0.666" />
+
+    <ListView
+        android:id="@+id/resListView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kaishi" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
